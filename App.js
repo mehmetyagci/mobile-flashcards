@@ -1,6 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
+import AddDecl from './components/AddDeck';
+
+
 export default class App extends React.Component {
   componentDidMount () {
     console.log ('App->Before');
@@ -13,6 +16,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <Text>Open up App.js to start working on your app!</Text>
         <Text>MY Initial Commit</Text>
+        <AddDeck />
       </View>
     );
   }
