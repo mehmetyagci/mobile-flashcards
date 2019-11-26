@@ -4,7 +4,7 @@ import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
 
-import {getDecks} from './utils/api';
+import {getDecks, saveDeckTitle} from './utils/api';
 
 import {AppLoading} from 'expo';
 
@@ -34,6 +34,12 @@ export default class App extends React.Component {
     }
   }
 
+  handleAddDeck = newDeck => {
+    console.log ('Parent received value from child: ' + newDeck);
+    saveDeckTitle (newDeck);
+    this.retrieveDecks ();
+  };
+
   render () {
     const {decks, ready} = this.state;
     console.log ('App->render->decks:', decks);
@@ -49,6 +55,7 @@ export default class App extends React.Component {
         <ScrollView>
           {console.log ('App-Render-state:', this.state.decks)}
           <DeckList decks={this.state.decks} />
+          <AddDeck addDeckCallback={this.handleAddDeck} />
         </ScrollView>
       </View>
     );

@@ -6,40 +6,29 @@ import {DECK_STORAGE_KEY, formatDeckResults} from './_deck';
 // }
 
 export function getDecks () {
-  // AsyncStorage.getItem (DECK_STORAGE_KEY).then (data => {
-  //   console.group ('api->getDecks');
-  //   console.log (`data:${data}`);
-  //   if(data === null) {
-  //     console.log (`data:undefined`);
-  //     decks2 = setDummyData();
-  //     console.log('decks2:',decks2);
-  //     return decks2;
-  //   }
-  //   console.groupEnd ('api->getDecks');
-
-  //   const decks2 = JSON.parse (data);
-  //   return decks2;
-  // });
-
   console.group ('api->getDecks');
   var decks = AsyncStorage.getItem (DECK_STORAGE_KEY).then (formatDeckResults);
   console.log (`decks:${decks}`);
   console.groupEnd ('api->getDecks');
   return decks;
-  // this.retrieveItem(DECK_STORAGE_KEY).then((decks) => {
+}
 
-  // }).catch((error) => {
-  //   console.log('Promise is rejected with error: ' + error);
-  // });
-  // console.log ('api->getDecks');
-  // const retrievedItem = retrieveItem (DECK_STORAGE_KEY);
-  // console.log ('api->getDecks->retrievedItem', retrievedItem);
-  // if (retrievedItem === undefined) {
-  //   console.log ('api->getDecks->retrievedItem:null');
-  //   retrievedItem = this.setDummyData ();
-  //   console.log ('api->getDecks->retrievedItem:', retrievedItem);
-  // }
-  // return retrievedItem;
+export function saveDeckTitle (newTitle) {
+  console.group ('api->saveDeckTitletDecks');
+  var newDeck = {title: newTitle, questions: []};
+  console.log ('newDeck:', newDeck);
+  console.log ('JSON.stringify(newDeck):', JSON.stringify (newDeck));
+
+  var decks = AsyncStorage.mergeItem (
+    DECK_STORAGE_KEY,
+    JSON.stringify ({
+      [newTitle]: newDeck,
+    })
+  );
+
+  console.log (`decks:${decks}`);
+  console.groupEnd ('api->saveDeckTitle');
+  return decks;
 }
 
 // export function getDeck (id) {

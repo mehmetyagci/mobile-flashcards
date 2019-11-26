@@ -18,9 +18,13 @@ function SubmitBtn({onPress}) {
 }
 
 export default class AddDeck extends Component {
-  state = {
-    newDeck: '',
-  };
+  constructor (props) {
+    super (props);
+    console.log ('AddDeck->props:', props);
+    this.state = {
+      newDeck: '',
+    };
+  }
 
   submit = () => {
     console.group ('AddDeck->submit');
@@ -28,23 +32,31 @@ export default class AddDeck extends Component {
 
     console.log ('newDeck:', newDeck);
 
-    // Update Redux
+    if (!newDeck) return;
 
-    this.setState (() => ({deck: ''}));
+    // Update Redux
+    this.props.addDeckCallback (newDeck);
+
+    this.setState ({newDeck: ''});
 
     // Navigate to Home
 
     // Save to 'DB'
 
     // Clean local notification
-    console.groupend ('AddDeck->submit');
+    console.groupEnd ('AddDeck->submit');
   };
+
+  onChangeText = text => this.setState ({newDeck: text});
 
   render () {
     return (
       <View>
         <Text>Add Deck</Text>
-        <TextInput placeholder="Type your new deck name, and submit form" />
+        <TextInput
+          placeholder="Type your new deck name, and submit form"
+          onChangeText={this.onChangeText}
+        />
         <SubmitBtn onPress={this.submit} />
       </View>
     );

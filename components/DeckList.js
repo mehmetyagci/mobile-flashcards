@@ -16,8 +16,8 @@ export default class DeckList extends Component {
         <Text style={styles.headerText}>Decks</Text>
         {Object.keys (decks).map (key => {
           const {title, questions} = decks[key];
-          console.log (`title:${title}`);
-          console.log (`questions:${questions[0].answer}`);
+          // console.log (`title:${title}`);
+          // console.log (`questions:${questions[0].answer}`);
 
           return (
             <View key={key} style={styles.itemBlock}>
@@ -27,7 +27,7 @@ export default class DeckList extends Component {
                 <View style={styles.itemMeta}>
                   <Text style={styles.itemName}>{title}</Text>
                   <Text style={styles.itemQuestionInfo}>
-                    {questions.length} cards
+                    {questions !== undefined ? questions.length : 0} cards
                   </Text>
                 </View>
                 <View style={styles.separator} />
