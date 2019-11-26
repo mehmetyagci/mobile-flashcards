@@ -1,22 +1,55 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 
-import AddDecl from './components/AddDeck';
+import DeckList from './components/DeckList';
+import AddDeck from './components/AddDeck';
 
+import {getDecks} from './utils/api';
+
+import {AppLoading} from 'expo';
 
 export default class App extends React.Component {
-  componentDidMount () {
-    console.log ('App->Before');
+  constructor (props) {
+    super (props);
+    this.state = {
+      ready: false,
+      decks: {},
+    };
+  }
 
-    console.log ('App->After');
+  componentDidMount () {
+    console.group ('App->componentDidMount->Before');
+    this.retrieveDecks ();
+    console.groupEnd ('App->componentDidMount->After');
+  }
+
+  retrieveDecks () {
+    try {
+      console.log ('retrieveDecks->before');
+      //getDecks ().then (x => this.setState ({decks: x, ready: true}));
+      getDecks ().then (x => this.setState (() => ({decks: x, ready: true})));
+      //getDecks ().then(x =>  this.setState ({decks: x})   );
+    } catch (error) {
+      console.log (error.messsage);
+    }
   }
 
   render () {
+    const {decks, ready} = this.state;
+    console.log ('App->render->decks:', decks);
+    console.log ('App->render->keys:', Object.keys (decks));
+    console.log ('App->render->values:', Object.values (decks));
+
+    if (ready === false) {
+      return <AppLoading />;
+    }
+
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>MY Initial Commit</Text>
-        <AddDeck />
+        <ScrollView>
+          {console.log ('App-Render-state:', this.state.decks)}
+          <DeckList decks={this.state.decks} />
+        </ScrollView>
       </View>
     );
   }
