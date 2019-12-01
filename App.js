@@ -5,6 +5,7 @@ import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
 import Quiz from './components/Quiz';
 import FlipTest1 from './components/FlipTest1';
+import AddCardToDeck from './components/AddCardToDeck';
 
 import {getDecks, saveDeckTitle, clear} from './utils/api';
 
@@ -59,10 +60,10 @@ export default class App extends React.Component {
       return <AppLoading />;
     }
 
-
     return (
       <View style={styles.container}>
-        <Quiz deckId={'React'} />
+        {/* <Quiz deckId={'React'} />  */}
+        <AddCardToDeck />
       </View>
     );
   }

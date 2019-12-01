@@ -5,7 +5,9 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Button,
 } from 'react-native';
+import {RadioButton} from 'react-native-paper';
 
 import {whiteSmoke, purple} from '../utils/colors';
 
@@ -23,23 +25,22 @@ export default class AddCardToDeck extends Component {
     console.log ('AddCardToDeck->props:', props);
     this.state = {
       question: '',
-      answer: true,
+      checked: 'correct',
     };
   }
 
   submit = () => {
     console.group ('AddCardToDeck->submit');
-    const {question, answer} = this.state;
+    const {question, checked} = this.state;
 
-    console.log (`question:${question} answer:${answer}`);
+    console.log (`question:${question} checked:${checked}`);
 
-    if (!question || answer === undefined) return;
+    if (!question || !checked) return;
 
     // Update Redux
-    alert ('this.props.addDeckCallback  worked', text);
-    this.props.addDeckCallback (text);
+    alert ('this.props.addDeckCallback  worked', question, checked);
 
-    this.setState ({question: '', answer: true });
+    this.setState ({question: '', checked: 'correct'});
 
     // Navigate to Home
 
@@ -49,37 +50,46 @@ export default class AddCardToDeck extends Component {
     console.groupEnd ('AddCardToDeck->submit');
   };
 
-  onChangeText = question => this.setState ({question});
-
-  clearAsyncstorage = () => {
-    alert ('clearAsyncstorage');
-    this.props.clearAsyncstorage ();
-  };
-
   render () {
-    const {question, answer} = this.state;
+    const {question, checked} = this.state;
+
+    console.log ('checked');
+    console.log (checked);
 
     return (
-      <View>
-        <Text style={styles.text}>Add Deck</Text>
-        <TextInput
-          style={styles.input}
-          value={question}
-          placeholder="Type your card question and check answer"
-          onChangeText={this.onChangeText}
-        />
+      <View style={styles.container}>
+        <Text style={{color: 'skyblue', fontSize: 20, fontWeight: 'bold'}}>
+          New Question
+        </Text>
+        <View style={styles.inputContainer}>
 
-        
+          <TextInput
+            style={styles.inputs}
+            placeholder="Question"
+            underlineColorAndroid="transparent"
+            onChangeText={question => this.setState ({question})}
+          />
+          />
+        </View>
 
-        <SubmitBtn onPress={this.submit} />
+        <View style={styles.inputContainer}>
 
-        <TouchableOpacity
-          onPress={this.clearAsyncstorage}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Clear Storage</Text>
-        </TouchableOpacity>
-
+          <RadioButton
+            value="correct"
+            status={checked === 'correct' ? 'checked' : 'unchecked'}
+            onPress={() => {
+              this.setState ({checked: 'correct'});
+            }}
+          /><Text>Correct</Text>
+          <RadioButton
+            value="incorrect"
+            status={checked === 'incorrect' ? 'checked' : 'unchecked'}
+            onPress={() => {
+              this.setState ({checked: 'incorrect'});
+            }}
+          /><Text>Incorrect</Text>
+        </View>
+        <Button title="Submit" color="skyblue" onPress={this.submit} />
       </View>
     );
   }
@@ -88,40 +98,28 @@ export default class AddCardToDeck extends Component {
 const styles = StyleSheet.create ({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: whiteSmoke,
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginLeft: 25,
+    padding: 30,
   },
-  row: {
-    flexDirection: 'row',
-    flex: 1,
-    alignItems: 'center',
-  },
-  submitBtnText: {
-    color: purple,
-    fontSize: 22,
-    textAlign: 'center',
-  },
-  text: {
-    fontSize: 44,
-    padding: 13,
-    backgroundColor: purple,
-  },
-  input: {
-    padding: 15,
+  inputContainer: {
+    borderBottomColor: '#F5FCFF',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 30,
     borderBottomWidth: 1,
-    borderBottomColor: purple,
-    margin: 10,
-    fontSize: 45,
+    width: 300,
+    height: 50,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 20,
+    marginBottom: 20,
   },
-  button: {
-    margin: 10,
-    padding: 10,
-    backgroundColor: '#FF851B',
+  inputs: {
+    height: 45,
+    marginLeft: 16,
+    borderBottomColor: '#FFFFFF',
+    flex: 1,
   },
-  buttonText: {
-    fontSize: 14,
-    color: '#fff',
+  inputRow: {
+    flexDirection: 'row',
   },
 });
