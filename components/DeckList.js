@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Platform, TouchableOpacity} from 'react-native';
-import {whiteSmoke, gray, purple} from '../utils/colors';
-import {white} from 'ansi-colors';
+import {whiteSmoke, gray, purple, white} from '../utils/colors';
 
 export default class DeckList extends Component {
   constructor (props) {
@@ -15,6 +14,7 @@ export default class DeckList extends Component {
       <View style={styles.container}>
         <Text style={styles.headerText}>Decks</Text>
         {Object.keys (decks).map (key => {
+          console.log ('key', key);
           const {title, questions} = decks[key];
           // console.log (`title:${title}`);
           // console.log (`questions:${questions[0].answer}`);

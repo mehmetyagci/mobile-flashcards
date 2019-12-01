@@ -17,57 +17,60 @@ function SubmitBtn({onPress}) {
   );
 }
 
-export default class AddDeck extends Component {
+export default class AddCardToDeck extends Component {
   constructor (props) {
     super (props);
-    console.log ('AddDeck->props:', props);
+    console.log ('AddCardToDeck->props:', props);
     this.state = {
-      text: '',
+      question: '',
+      answer: true,
     };
   }
 
   submit = () => {
-    console.group ('AddDeck->submit');
-    const {text} = this.state;
+    console.group ('AddCardToDeck->submit');
+    const {question, answer} = this.state;
 
-    console.log ('newDeckTitle:', text);
+    console.log (`question:${question} answer:${answer}`);
 
-    if (!text) return;
+    if (!question || answer === undefined) return;
 
     // Update Redux
     alert ('this.props.addDeckCallback  worked', text);
     this.props.addDeckCallback (text);
 
-    this.setState ({text: ''});
+    this.setState ({question: '', answer: true });
 
     // Navigate to Home
 
     // Save to 'DB'
 
     // Clean local notification
-    console.groupEnd ('AddDeck->submit');
+    console.groupEnd ('AddCardToDeck->submit');
   };
 
-  onChangeText = text => this.setState ({text});
+  onChangeText = question => this.setState ({question});
 
-  
   clearAsyncstorage = () => {
     alert ('clearAsyncstorage');
     this.props.clearAsyncstorage ();
   };
 
   render () {
-    const {text} = this.state;
+    const {question, answer} = this.state;
 
     return (
       <View>
         <Text style={styles.text}>Add Deck</Text>
         <TextInput
           style={styles.input}
-          value={text}
-          placeholder="Type your new deck name, and submit form"
+          value={question}
+          placeholder="Type your card question and check answer"
           onChangeText={this.onChangeText}
         />
+
+        
+
         <SubmitBtn onPress={this.submit} />
 
         <TouchableOpacity

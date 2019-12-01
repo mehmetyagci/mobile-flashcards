@@ -3,8 +3,10 @@ import {StyleSheet, Text, View, ScrollView} from 'react-native';
 
 import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
+import Quiz from './components/Quiz';
+import FlipTest1 from './components/FlipTest1';
 
-import {getDecks, saveDeckTitle} from './utils/api';
+import {getDecks, saveDeckTitle, clear} from './utils/api';
 
 import {AppLoading} from 'expo';
 
@@ -29,6 +31,7 @@ export default class App extends React.Component {
       //getDecks ().then (x => this.setState ({decks: x, ready: true}));
       getDecks ().then (x => this.setState (() => ({decks: x, ready: true})));
       //getDecks ().then(x =>  this.setState ({decks: x})   );
+      console.log ('retrieveDecks->this.state.decks:', this.state.decks);
     } catch (error) {
       console.log (error.messsage);
     }
@@ -40,23 +43,26 @@ export default class App extends React.Component {
     this.retrieveDecks ();
   };
 
+  handleClearAsyncstorage () {
+    alert ('handleClearAsyncstorage');
+    clear ();
+    //this.retrieveDecks ();
+  }
+
   render () {
     const {decks, ready} = this.state;
-    console.log ('App->render->decks:', decks);
-    console.log ('App->render->keys:', Object.keys (decks));
-    console.log ('App->render->values:', Object.values (decks));
+    // console.log ('App->render->decks:', decks);
+    // console.log ('App->render->keys:', Object.keys (decks));
+    // console.log ('App->render->values:', Object.values (decks));
 
     if (ready === false) {
       return <AppLoading />;
     }
 
+
     return (
       <View style={styles.container}>
-        <ScrollView>
-          {console.log ('App-Render-state:', this.state.decks)}
-          <DeckList decks={this.state.decks} />
-          <AddDeck addDeckCallback={this.handleAddDeck} />
-        </ScrollView>
+        <Quiz deckId={'React'} />
       </View>
     );
   }
