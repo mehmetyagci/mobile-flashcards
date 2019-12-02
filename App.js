@@ -6,8 +6,9 @@ import AddDeck from './components/AddDeck';
 import Quiz from './components/Quiz';
 import FlipTest1 from './components/FlipTest1';
 import AddCardToDeck from './components/AddCardToDeck';
+import Deck from './components/Deck';
 
-import {getDecks, saveDeckTitle, clear} from './utils/api';
+import {getDecks, saveDeckTitle, addCardToDeck2, clear} from './utils/api';
 
 import {AppLoading} from 'expo';
 
@@ -39,8 +40,18 @@ export default class App extends React.Component {
   }
 
   handleAddDeck = newDeck => {
-    console.log ('Parent received value from child: ' + newDeck);
+    console.log ('handleAddDeck->Parent received value from child: ' + newDeck);
     saveDeckTitle (newDeck);
+    this.retrieveDecks ();
+  };
+
+  handleAddCardToDeck = (deckId, card) => {
+    console.log (`handleAddCardToDeck->deckId:'${deckId} card:${card}`);
+
+    (async () => {
+      await addCardToDeck2 (deckId, card);
+    }) ();
+
     this.retrieveDecks ();
   };
 
@@ -62,8 +73,13 @@ export default class App extends React.Component {
 
     return (
       <View style={styles.container}>
-        {/* <Quiz deckId={'React'} />  */}
-        <AddCardToDeck />
+        <ScrollView>
+          {/* <Quiz deckId={'React'} />  */}
+          {console.log ('App-Render-state:', this.state.decks)}
+          <DeckList decks={this.state.decks} />
+          {/* <AddCardToDeck addCardToDeckCallback={this.handleAddCardToDeck} /> */}
+          <Deck deckId="SQL" />
+        </ScrollView>
       </View>
     );
   }

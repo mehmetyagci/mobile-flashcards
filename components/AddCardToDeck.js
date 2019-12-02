@@ -38,7 +38,15 @@ export default class AddCardToDeck extends Component {
     if (!question || !checked) return;
 
     // Update Redux
-    alert ('this.props.addDeckCallback  worked', question, checked);
+    // alert ('this.props.addCardToDeckCallback  worked', question, checked);
+
+    let card = { question, checked};
+
+    let newCard = new Object();
+    newCard.question = question;
+    newCard.answer = true;
+
+    this.props.addCardToDeckCallback("SQL", newCard);
 
     this.setState ({question: '', checked: 'correct'});
 
@@ -62,18 +70,15 @@ export default class AddCardToDeck extends Component {
           New Question
         </Text>
         <View style={styles.inputContainer}>
-
           <TextInput
             style={styles.inputs}
             placeholder="Question"
             underlineColorAndroid="transparent"
             onChangeText={question => this.setState ({question})}
           />
-          />
         </View>
 
         <View style={styles.inputContainer}>
-
           <RadioButton
             value="correct"
             status={checked === 'correct' ? 'checked' : 'unchecked'}
