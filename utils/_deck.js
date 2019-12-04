@@ -1,5 +1,4 @@
 import {AsyncStorage} from 'react-native';
-
 export const DECK_STORAGE_KEY = 'MobileFlashcards:deck';
 
 function setDummyData () {
@@ -19,7 +18,7 @@ function setDummyData () {
         {
           question: 'React is used for developing complex and interactive web and mobile UI.',
           answer: true,
-        },       
+        },
       ],
     },
     Javascript: {
@@ -44,12 +43,24 @@ function setDummyData () {
 }
 
 export function formatDeckResults (results) {
-  console.group ('api->formatDeckResults');
-  console.log (`results:${results}`);
+  //console.group ('api->formatDeckResults');
+  //console.log (`results:${results}`);
   let returnValue = results === null ? setDummyData () : JSON.parse (results);
-  console.log (`returnValue:${returnValue}`);
-  console.log (`Object.keys(returnValue):${Object.keys (returnValue)}`);
-  console.log (`Object.values(returnValue):${Object.values (returnValue)}`);
-  console.groupEnd ('api->formatDeckResults');
+  // console.log (`returnValue:${returnValue}`);
+  // console.log (`Object.keys(returnValue):${Object.keys (returnValue)}`);
+  // console.log (`Object.values(returnValue):${Object.values (returnValue)}`);
+  // console.groupEnd ('api->formatDeckResults');
   return returnValue;
+}
+
+export function deckQuestionCountMessage (questions) {
+  let result = '0 card';
+
+  const questionsLength = questions.length;
+  if (questions.Length === 1) {
+    result = '1 card';
+  } else {
+    result = questionsLength + ' cards';
+  }
+  return result;
 }

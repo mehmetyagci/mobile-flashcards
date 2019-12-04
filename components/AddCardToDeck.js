@@ -22,7 +22,7 @@ function SubmitBtn({onPress}) {
 export default class AddCardToDeck extends Component {
   constructor (props) {
     super (props);
-    console.log ('AddCardToDeck->props:', props);
+    //console.log ('AddCardToDeck->props:', props);
     this.state = {
       question: '',
       checked: 'correct',
@@ -33,7 +33,7 @@ export default class AddCardToDeck extends Component {
     console.group ('AddCardToDeck->submit');
     const {question, checked} = this.state;
 
-    console.log (`question:${question} checked:${checked}`);
+    //console.log (`question:${question} checked:${checked}`);
 
     if (!question || !checked) return;
 
@@ -61,8 +61,8 @@ export default class AddCardToDeck extends Component {
   render () {
     const {question, checked} = this.state;
 
-    console.log ('checked');
-    console.log (checked);
+    // console.log ('checked');
+    // console.log (checked);
 
     return (
       <View style={styles.container}>

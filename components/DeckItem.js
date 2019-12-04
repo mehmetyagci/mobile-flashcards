@@ -8,38 +8,32 @@ import {
 } from 'react-native';
 import {Icon} from 'native-base';
 import {white, whiteSmoke, gray, skyblue} from '../utils/colors';
+import {deckQuestionCountMessage} from '../utils/_deck';
 
 const {width} = Dimensions.get ('window');
 
 class DeckItem extends Component {
   constructor (props) {
     super (props);
-    console.log ('DeckItem->deck');
+    console.log ('DeckItem->deck->constructor');
     console.log (props);
   }
 
-  questionCountMessage (questionsLength) {
-    console.log ('questionCountMessage->deck:', questionsLength);
-    if (questionsLength === 0) {
-      return <Text style={styles.text}>0 card</Text>;
-    } else if (questionsLength === 1) {
-      return <Text style={styles.text}>1 card</Text>;
-    } else {
-      return <Text style={styles.text}>{questionsLength} cards</Text>;
-    }
-  }
-
   render () {
-    const {deck} = this.props;
+    const {title, questions} = this.props;
+
+    let totalQuestionCount = deckQuestionCountMessage (questions);
+    console.log ('totalQuestionCount5:', totalQuestionCount);
 
     return (
       <View style={styles.container}>
         <View style={styles.rowContainer}>
-
           <Text style={styles.text}>
-            {deck.title}
+            {title}
           </Text>
-          {this.questionCountMessage (deck.questions.length)}
+          <Text style={styles.text}>
+            {totalQuestionCount}
+          </Text>
         </View>
       </View>
     );

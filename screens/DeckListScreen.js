@@ -28,7 +28,8 @@ import {
 } from '../utils/api';
 
 import DeckItem from '../components/DeckItem';
-
+import StackNavigator from 'react-navigation-stack';
+import {deckQuestionCountMessage} from  '../utils/_deck'
 class DeckListScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -61,9 +62,9 @@ class DeckListScreen extends React.Component {
 
   loadDecks = async () => {
     try {
-      console.log ('loadDecks->before');
+      // console.log ('loadDecks->before');
       getDecks ().then (x => this.setState (() => ({decks: x, isReady: true})));
-      console.log ('loadDecks->this.state.decks:', this.state.decks);
+      // console.log ('loadDecks->this.state.decks:', this.state.decks);
     } catch (error) {
       console.log (error);
       alert (`Application Error. Cannot load data.Details:${error.messsage}`);
@@ -76,8 +77,15 @@ class DeckListScreen extends React.Component {
     });
   };
 
+  cb = deck => {
+    console.log('cd',deck)
+    this.props.navigation.navigate ('DeckDetail', {
+      deck: deck,
+    });
+  };
+
   addDeck = title => {
-    console.log ('addDeck starting->title:', title);
+    //console.log ('addDeck starting->title:', title);
     //const newDeck = {title: title, questions: []};
     const newDeckObject = {
       [title]: {
@@ -91,24 +99,22 @@ class DeckListScreen extends React.Component {
         ...prevState,
         decks: {
           ...newDeckObject,
-          ...prevState.decks
+          ...prevState.decks,
         },
       };
-      console.log ('addDeck->newState.decks', newState.decks);
+      // console.log ('addDeck->newState.decks', newState.decks);
       saveDecks (newState.decks);
       return {...newState};
     });
   };
 
-  
-
   render () {
     const {decks, isReady} = this.state;
-    console.log ('DeckList->render->decks');
-    console.log (decks);
+    //console.log ('DeckList->render->decks');
+    //console.log (decks);
 
     const decksValues = _.values (decks);
-    console.log ('DeckList->render->decksValues:', decksValues);
+    //console.log ('DeckList->render->decksValues:', decksValues);
 
     if (!isReady) {
       return <AppLoading />;
@@ -121,7 +127,11 @@ class DeckListScreen extends React.Component {
 
         <FlatList
           data={decksValues}
-          renderItem={({item}) => <DeckItem deck={item} />}
+          renderItem={({item}) => (
+            <TouchableOpacity onPress={() => this.cb (item)}>
+              <DeckItem title={item.title} questions={item.questions} />
+            </TouchableOpacity>
+          )}
           keyExtractor={item => item.title}
         />
 

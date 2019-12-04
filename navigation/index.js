@@ -4,6 +4,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 import DeckListScreen from '../screens/DeckListScreen';
 import AddDeckScreen from '../screens/AddDeckScreen';
+import DeckDetailScreen from '../screens/DeckDetailScreen';
 
 const AppNavigator = createStackNavigator (
   {
@@ -13,6 +14,9 @@ const AppNavigator = createStackNavigator (
     AddDeck: {
       screen: AddDeckScreen,
     },
+    DeckDetail: {
+      screen: DeckDetailScreen,
+    }
   },
   {
     initialRouteName: 'DeckList',

@@ -7,7 +7,7 @@ export function clear () {
 }
 
 export function getDecks () {
-  console.group ('api->getDecks');
+  // console.group ('api->getDecks');
 
   // AsyncStorage.removeItem (DECK_STORAGE_KEY).then (() =>
   //   console.log ('RemovedItem')
@@ -15,8 +15,8 @@ export function getDecks () {
   // AsyncStorage.clear ().then (() => console.log ('Cleared'));
 
   var decks = AsyncStorage.getItem (DECK_STORAGE_KEY).then (formatDeckResults);
-  console.log (`decks:${decks}`);
-  console.groupEnd ('api->getDecks');
+  //console.log (`decks:${decks}`);
+  //console.groupEnd ('api->getDecks');
   return decks;
 }
 
@@ -26,7 +26,7 @@ export const getDeck = async id => {
     //await AsyncStorage.removeItem (DECK_STORAGE_KEY);
     //await AsyncStorage.clear ();
 
-    let unique = 1;
+    let unique = 2;
     console.log ('getDeck' + unique);
     console.log ('id:', id);
     let decksJSON = await AsyncStorage.getItem (DECK_STORAGE_KEY);
