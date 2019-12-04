@@ -77,7 +77,7 @@ class DeckListScreen extends React.Component {
     });
   };
 
-  cb = deck => {
+  onPressDeckDetail = deck => {
     console.log('cd',deck)
     this.props.navigation.navigate ('DeckDetail', {
       deck: deck,
@@ -128,7 +128,7 @@ class DeckListScreen extends React.Component {
         <FlatList
           data={decksValues}
           renderItem={({item}) => (
-            <TouchableOpacity onPress={() => this.cb (item)}>
+            <TouchableOpacity onPress={() => this.onPressDeckDetail (item)}>
               <DeckItem title={item.title} questions={item.questions} />
             </TouchableOpacity>
           )}

@@ -5,6 +5,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import DeckListScreen from '../screens/DeckListScreen';
 import AddDeckScreen from '../screens/AddDeckScreen';
 import DeckDetailScreen from '../screens/DeckDetailScreen';
+import QuizScreen from '../screens/QuizScreen';
 
 const AppNavigator = createStackNavigator (
   {
@@ -16,7 +17,10 @@ const AppNavigator = createStackNavigator (
     },
     DeckDetail: {
       screen: DeckDetailScreen,
-    }
+    },
+    Quiz: {
+      screen: QuizScreen,
+    },
   },
   {
     initialRouteName: 'DeckList',

@@ -14,6 +14,16 @@ import {
 import {deckQuestionCountMessage} from '../utils/_deck';
 
 export default class DeckDetailScreen extends Component {
+  onPressQuiz = () => {
+    const {params} = this.props.navigation.state;
+    const deck = params ? params.deck : undefined;
+    const deckId = deck.title;
+    console.log ('onPressQuiz:deckId', deckId);
+    this.props.navigation.navigate ('Quiz', {
+      deckId: deckId,
+    });
+  };
+
   render () {
     console.log ('DeckDetailScreen render');
     const {params} = this.props.navigation.state;
@@ -30,50 +40,50 @@ export default class DeckDetailScreen extends Component {
 
     return (
       <Container>
-          <Content
-            contentContainerStyle={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              paddingTop: 40,
-              paddingHorizontal: 10,
-            }}
-          >
-            <Card>
-              <CardItem header>
-                <NBText>{deck.title}</NBText>
-              </CardItem>
-              <CardItem bordered>
-                <NBText>
-                  {totalQuestionCount}
-                </NBText>
-              </CardItem>
-            </Card>
-            <View style={{marginTop: 20}}>
-              <Button
-                style={{
-                  backgroundColor: '#5067FF',
-                  margin: 25,
-                  justifyContent: 'center',
-                }}
-                onPress={() => console.log ('button pressed')}
-              >
-                <NBText style={{fontWeight: 'bold'}}>Add Card</NBText>
-              </Button>
-            </View>
+        <Content
+          contentContainerStyle={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingTop: 40,
+            paddingHorizontal: 10,
+          }}
+        >
+          <Card>
+            <CardItem header>
+              <NBText>{deck.title}</NBText>
+            </CardItem>
+            <CardItem bordered>
+              <NBText>
+                {totalQuestionCount}
+              </NBText>
+            </CardItem>
+          </Card>
+          <View style={{marginTop: 20}}>
+            <Button
+              style={{
+                backgroundColor: '#5067FF',
+                margin: 25,
+                justifyContent: 'center',
+              }}
+              onPress={() => console.log ('button pressed')}
+            >
+              <NBText style={{fontWeight: 'bold'}}>Add Card</NBText>
+            </Button>
+          </View>
 
-            <View style={{marginTop: 20}}>
-              <Button
-                style={{
-                  backgroundColor: '#5067FF',
-                  margin: 25,
-                  justifyContent: 'center',
-                }}
-                onPress={() => console.log ('button pressed')}
-              >
-                <NBText style={{fontWeight: 'bold'}}>Start Quiz</NBText>
-              </Button>
-            </View>
-          </Content>
+          <View style={{marginTop: 20}}>
+            <Button
+              style={{
+                backgroundColor: '#5067FF',
+                margin: 25,
+                justifyContent: 'center',
+              }}
+              onPress={() => this.onPressQuiz ()}
+            >
+              <NBText style={{fontWeight: 'bold'}}>Start Quiz</NBText>
+            </Button>
+          </View>
+        </Content>
       </Container>
     );
   }
