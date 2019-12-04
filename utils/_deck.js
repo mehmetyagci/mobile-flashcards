@@ -19,15 +19,7 @@ function setDummyData () {
         {
           question: 'React is used for developing complex and interactive web and mobile UI.',
           answer: true,
-        },
-        {
-          question: 'React uses the real DOM instead of the virtual DOM.',
-          answer: false,
-        },
-        {
-          question: 'React follows two-directional data flow or data binding.',
-          answer: false,
-        },
+        },       
       ],
     },
     Javascript: {

@@ -8,6 +8,10 @@ export function clear () {
 
 export function getDecks () {
   console.group ('api->getDecks');
+
+  AsyncStorage.removeItem (DECK_STORAGE_KEY).then (() =>   console.log ('RemovedItem'));
+  AsyncStorage.clear ().then (() => console.log ('Cleared'));
+
   var decks = AsyncStorage.getItem (DECK_STORAGE_KEY).then (formatDeckResults);
   console.log (`decks:${decks}`);
   console.groupEnd ('api->getDecks');
@@ -40,23 +44,44 @@ export const getDeck = async id => {
   }
 };
 
-export function saveDeckTitle (newTitle) {
-  console.group ('api->saveDeckTitletDecks');
+export function saveDecks (newDecks) {
+  console.log('saveDecks')
+  console.log(newDecks)
+  AsyncStorage.setItem (DECK_STORAGE_KEY, JSON.stringify (newDecks));
+}
+
+export function submitEntry({entry, key}) {
+  return AsyncStorage.mergeItem (
+    DECK_STORAGE_KEY,
+    JSON.stringify ({
+      [key]: entry,
+    })
+  );
+}
+
+export const saveDeckTitle = async (newTitle, decks) => {
+  console.log (`api->saveDeckTitletDecks newTitle:${newTitle} decks:${decks} `);
+
+  // if (newTitle === undefined || newTitle === '') {
+  //   return;
+  // }
+
   var newDeck = {title: newTitle, questions: []};
   console.log ('newDeck:', newDeck);
   console.log ('JSON.stringify(newDeck):', JSON.stringify (newDeck));
 
-  var decks = AsyncStorage.mergeItem (
-    DECK_STORAGE_KEY,
-    JSON.stringify ({
-      [newTitle]: newDeck,
-    })
-  );
+  const newDecks = {...decks, ...newDeck};
 
-  console.log (`decks:${decks}`);
-  console.groupEnd ('api->saveDeckTitle');
-  return decks;
-}
+  console.log ('saveDeckTitle3:');
+  console.log (newDecks);
+  //AsyncStorage.removeItem (DECK_STORAGE_KEY);
+  await AsyncStorage.setItem (DECK_STORAGE_KEY, JSON.stringify (newDecks));
+
+  console.log (`decks:${newDecks}`);
+  console.log (`decks:${JSON.stringify (newDecks)}`);
+  console.log ('api->saveDeckTitle');
+  return newDecks;
+};
 
 // addCardToDeck
 
@@ -159,7 +184,6 @@ export const addCardToDeck2 = async (deckId, card) => {
     console.log (error);
   }
 };
-
 
 // export function getDeck (id) {
 //   return AsyncStorage.getItem (DECK_STORAGE_KEY).then (formatDeckResults);

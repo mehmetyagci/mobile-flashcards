@@ -18,7 +18,14 @@ import _ from 'lodash';
 import FloatingButton from '../components/FloatingButton';
 import Header from '../components/Header';
 
-import {getDecks, saveDeckTitle, addCardToDeck2, clear} from '../utils/api';
+import {
+  getDecks,
+  saveDecks,
+  submitEntry,
+  saveDeckTitle,
+  addCardToDeck2,
+  clear,
+} from '../utils/api';
 
 import DeckItem from '../components/DeckItem';
 
@@ -34,30 +41,66 @@ class DeckListScreen extends React.Component {
 
   componentDidMount () {
     console.group ('App->componentDidMount->Before');
+    this.loadFonts ();
     this.loadDecks ();
     console.groupEnd ('App->componentDidMount->After');
   }
 
-  loadDecks = async () => {
+  loadFonts = async () => {
     try {
-      console.log ('loadDecks->before');
-
       await Font.loadAsync ({
         Roboto: require ('../node_modules/native-base/Fonts/Roboto.ttf'),
         Roboto_medium: require ('../node_modules/native-base/Fonts/Roboto_medium.ttf'),
         ...Ionicons.font,
       });
+    } catch (error) {
+      console.log (error);
+      alert (`Application Error. Cannot load fonts.Details:${error.messsage}`);
+    }
+  };
+
+  loadDecks = async () => {
+    try {
+      console.log ('loadDecks->before');
       getDecks ().then (x => this.setState (() => ({decks: x, isReady: true})));
       console.log ('loadDecks->this.state.decks:', this.state.decks);
     } catch (error) {
-      console.log ();
+      console.log (error);
       alert (`Application Error. Cannot load data.Details:${error.messsage}`);
     }
   };
 
   onPressFab = () => {
-    this.props.navigation.navigate ('AddDeck');
+    this.props.navigation.navigate ('AddDeck', {
+      saveItem: this.addDeck,
+    });
   };
+
+  addDeck = title => {
+    console.log ('addDeck starting->title:', title);
+    //const newDeck = {title: title, questions: []};
+    const newDeckObject = {
+      [title]: {
+        title: title,
+        questions: [],
+      },
+    };
+
+    this.setState (prevState => {
+      const newState = {
+        ...prevState,
+        decks: {
+          ...newDeckObject,
+          ...prevState.decks
+        },
+      };
+      console.log ('addDeck->newState.decks', newState.decks);
+      saveDecks (newState.decks);
+      return {...newState};
+    });
+  };
+
+  
 
   render () {
     const {decks, isReady} = this.state;

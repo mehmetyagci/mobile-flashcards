@@ -1,55 +1,65 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View} from 'react-native';
+import {Form, Item, Input, Button, Text as NBText} from 'native-base';
 
-import {whiteSmoke, purple} from '../utils/colors';
+import {whiteSmoke, purple, skyblue} from '../utils/colors';
 
 export default class AddDeckScreen extends Component {
+  constructor (props) {
+    super (props);
+    console.log ('AddDeck->props:', props);
+    this.state = {
+      text: '',
+    };
+  }
+
+  onChangeText = event => {
+    this.setState ({deck: event.nativeEvent.text});
+  };
+
+  onAddDeck = () => {
+    if (this.state.deck === undefined || this.state.deck === '') {
+      alert ('Please fill deck title');
+      return;
+    }
+    console.log('AddDeckScreen->onAddDeck->deck', this.state.deck);
+    this.props.navigation.state.params.saveItem (this.state.deck);
+    this.props.navigation.goBack ();
+  };
+
   render () {
     return (
-      <View style={styles.container}>
-        <Text>Add Deck Screen</Text>
+      <View>
+        <View style={{margin: 10}}>
+          <Form>
+            <Item>
+              <Input
+                value={this.state.deck}
+                placeholder="Enter a new deck..."
+                autoFocus
+                clearButtonMode="always"
+                autoCorrect={false}
+                onChange={this.onChangeText}
+                onSubmitEditing={this.onAddDeck}
+                returnKeyType={'done'}
+              />
+            </Item>
+          </Form>
+
+          <View style={{marginTop: 20}}>
+            <Button
+              style={{
+                backgroundColor: '#5067FF',
+                margin: 25,
+                justifyContent: 'center',
+              }}
+              onPress={this.onAddDeck}
+            >
+              <NBText style={{fontWeight: 'bold'}}>Add Deck</NBText>
+            </Button>
+          </View>
+        </View>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create ({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: whiteSmoke,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  row: {
-    flexDirection: 'row',
-    flex: 1,
-    alignItems: 'center',
-  },
-  submitBtnText: {
-    color: purple,
-    fontSize: 22,
-    textAlign: 'center',
-  },
-  text: {
-    fontSize: 44,
-    padding: 13,
-    backgroundColor: purple,
-  },
-  input: {
-    padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: purple,
-    margin: 10,
-    fontSize: 45,
-  },
-  button: {
-    margin: 10,
-    padding: 10,
-    backgroundColor: '#FF851B',
-  },
-  buttonText: {
-    fontSize: 14,
-    color: '#fff',
-  },
-});
