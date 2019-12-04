@@ -11,7 +11,7 @@ import {whiteSmoke, purple} from '../utils/colors';
 
 function SubmitBtn({onPress}) {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} disabled={true}>
       <Text style={styles.submitBtnText}>SUBMIT</Text>
     </TouchableOpacity>
   );
@@ -50,7 +50,6 @@ export default class AddDeck extends Component {
 
   onChangeText = text => this.setState ({text});
 
-  
   clearAsyncstorage = () => {
     alert ('clearAsyncstorage');
     this.props.clearAsyncstorage ();

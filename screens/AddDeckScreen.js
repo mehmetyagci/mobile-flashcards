@@ -22,7 +22,7 @@ export default class AddDeckScreen extends Component {
       alert ('Please fill deck title');
       return;
     }
-    console.log('AddDeckScreen->onAddDeck->deck', this.state.deck);
+    console.log ('AddDeckScreen->onAddDeck->deck', this.state.deck);
     this.props.navigation.state.params.saveItem (this.state.deck);
     this.props.navigation.goBack ();
   };
@@ -53,7 +53,8 @@ export default class AddDeckScreen extends Component {
                 margin: 25,
                 justifyContent: 'center',
               }}
-              onPress={this.onAddDeck}
+              onPress={this.state.deck && this.onAddDeck}
+              disabled={!this.state.deck}
             >
               <NBText style={{fontWeight: 'bold'}}>Add Deck</NBText>
             </Button>

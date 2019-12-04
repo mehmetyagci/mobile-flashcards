@@ -21,7 +21,7 @@ class DeckItem extends Component {
   questionCountMessage (questionsLength) {
     console.log ('questionCountMessage->deck:', questionsLength);
     if (questionsLength === 0) {
-      return <Text style={styles.text}>No cards!</Text>;
+      return <Text style={styles.text}>0 card</Text>;
     } else if (questionsLength === 1) {
       return <Text style={styles.text}>1 card</Text>;
     } else {
