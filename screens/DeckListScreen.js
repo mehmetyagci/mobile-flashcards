@@ -81,10 +81,12 @@ class DeckListScreen extends React.Component {
   };
 
   onPressDeckDetail = deck => {
-    console.log ('cd', deck);
+    console.log ('onPressDeckDetail', deck);
+    console.log ('onPressDeckDetail->deck.title:', deck.title);
     this.props.navigation.navigate ('DeckDetail', {
-      deck: deck,
+      deckId: deck.title,
       saveCard: this.addCard,
+      questionCount: deck.questions.length,
     });
   };
 
@@ -129,7 +131,9 @@ class DeckListScreen extends React.Component {
       //   Object.assign ( {...decks[deckId].questions, card})
       // );
 
-      decks[deckId].questions = Object.assign ( decks[deckId].questions.concat(card));
+      decks[deckId].questions = Object.assign (
+        decks[deckId].questions.concat (card)
+      );
 
       // const newQuestions = decks[deckId].questions.concat (card);
       // console.log ('newQuestions');
@@ -137,8 +141,8 @@ class DeckListScreen extends React.Component {
 
       // decks[deckId].questions = Object.assign (newQuestions);
 
-       console.log ('decks[deckId].questions');
-       console.log (decks[deckId].questions);
+      console.log ('decks[deckId].questions');
+      console.log (decks[deckId].questions);
 
       console.log ('DeckListScreen->addCard->finaldecks2');
       console.log (decks);

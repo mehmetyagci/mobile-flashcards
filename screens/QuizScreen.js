@@ -16,7 +16,7 @@ export default class QuizScreen extends React.Component {
   }
 
   componentDidMount () {
-    console.log ('Quiz->componentDidMount');
+    console.log ('QuizScreen->componentDidMount');
     const {params} = this.props.navigation.state;
     const deckId = params ? params.deckId : undefined;
 
@@ -26,7 +26,7 @@ export default class QuizScreen extends React.Component {
   }
 
   fetchData = async deckId => {
-    console.log ('Quiz->fetchData');
+    console.log ('QuizScreen->fetchData');
     const filteredDeck = await getDeck (deckId);
     console.log ('fetcData->filteredDeck');
     console.log (filteredDeck);

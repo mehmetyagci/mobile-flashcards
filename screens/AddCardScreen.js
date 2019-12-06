@@ -30,7 +30,7 @@ export default class AddCardScreen extends Component {
   }
 
   onAddCard = () => {
-    alert ('AddCardScreen->onAddCard');
+    //alert ('AddCardScreen->onAddCard');
 
     const {question, checked} = this.state;
 
@@ -51,6 +51,7 @@ export default class AddCardScreen extends Component {
     newCard.answer = checked === 'correct' ? true : false;
 
     this.props.navigation.state.params.saveCard (deckId, newCard);
+    // this.props.navigation.state.params.onGoBack ();
     this.props.navigation.goBack ();
   };
 
@@ -83,6 +84,9 @@ export default class AddCardScreen extends Component {
     console.groupEnd ('AddCardToDeck->submit');
   };
 
+  componentWillUnmount () {
+    this.props.navigation.state.params.onGoBack ();
+  }
   render () {
     const {question, checked} = this.state;
 
