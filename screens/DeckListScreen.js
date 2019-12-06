@@ -110,104 +110,24 @@ class DeckListScreen extends React.Component {
   };
 
   addCard = (deckId, card) => {
-    console.log (`addCard->deckId3:'${deckId} card:${card}`);
+    console.log (`DeckListScreen->addCard->deckId3:'${deckId} card:${card}`);
     console.log (
-      `deckListScreen->addCard3->deckId:${deckId} card.question:${card.question}  card.answer:${card.answer}`
+      `deckListScreen->addCard->deckId:${deckId} card.question:${card.question}  card.answer:${card.answer}`
     );
-
-    // const {decks} = this.state;
-    // console.log ('decks4:');
-    // console.log (decks);
-
-    // console.log (`${deckId} title`);
-    // console.log (decks[deckId].title);
-
-    // console.log (`${deckId} questions before`);
-    // console.log (decks[deckId].questions.length);
-
-    // const newQuestions = decks[deckId].questions.concat (card);
-
-    // console.log (`${deckId} newQuestions after`);
-    // console.log (newQuestions.length);
 
     this.setState (prevState => {
       const {decks} = prevState;
-      console.log ('12', decks);
-      console.log('34', decks[deckId].questions)
+
       decks[deckId].questions.push (
         Object.assign ({}, {...decks[deckId].questions, card})
       );
 
-      console.log ('556', decks);
-      console.log('56', decks[deckId].questions)
+      console.log ('DeckListScreen->addCard->finaldecks');
+      console.log (decks);
 
+      saveDecks (decks);
       return {decks};
     });
-
-    // this.setState (prevState => ({
-    //   ...prevState,
-    //   decks: {
-    //     ...prevState.decks,
-    //     deckId: {
-    //       ...prevState.decks.deckId,
-    //       title: 'mehmet',
-    //     },
-    //   },
-    // }));
-
-    // this.setState (prevState => ({
-    //   ...prevState,
-    //   decks: {
-    //     ...prevState.decks[deckId],
-    //     questions: {
-    //       ...prevState.decks[deckId].questions.concat (card),
-    //     },
-    //   },
-    // }));
-
-    // this.setState (prevState => ({
-    //   ...prevState,
-    //   decks: {
-    //     ...prevState.decks,
-    //     deckId: {
-    //       ...prevState.decks.deckId,
-    //       questions: {
-    //         ...prevState.decks.deckId.questions.concat (card),
-    //       },
-    //     },
-    //   },
-    // }));
-
-    // this.setState (prevState => {
-    //   return {
-    //     decks: {
-    //       ...prevState.decks,
-    //       [deckId]: {
-    //         ...prevState.decks[deckId],
-    //         questions: prevState.decks[deckId].questions.concat ([card]),
-    //       },
-    //     },
-    //   };
-    // });
-
-    // console.log (`${deckId} questions after2`);
-    // console.log (decks[deckId].questions.length);
-
-    // const newDecks = decks.map (deck => {
-    //   console.log ('addCard->deck2');
-    //   console.log (deck);
-    //   if (deck.title !== deckId) {
-    //     return deck;
-    //   }
-
-    //   return {
-    //     ...deck,
-    //     questions: [...deck.questions, card],
-    //   };
-    // });
-
-    // console.log ('addCard->newDecks:1');
-    // console.log (newDecks);
   };
 
   render () {

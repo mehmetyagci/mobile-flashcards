@@ -9,10 +9,10 @@ export function clear () {
 export function getDecks () {
   // console.group ('api->getDecks');
 
-  AsyncStorage.removeItem (DECK_STORAGE_KEY).then (() =>
-    console.log ('RemovedItem')
-  );
-  AsyncStorage.clear ().then (() => console.log ('Cleared'));
+  // AsyncStorage.removeItem (DECK_STORAGE_KEY).then (() =>
+  //   console.log ('RemovedItem')
+  // );
+  // AsyncStorage.clear ().then (() => console.log ('Cleared'));
 
   var decks = AsyncStorage.getItem (DECK_STORAGE_KEY).then (formatDeckResults);
   //console.log (`decks:${decks}`);
