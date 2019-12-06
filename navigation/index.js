@@ -6,6 +6,7 @@ import DeckListScreen from '../screens/DeckListScreen';
 import AddDeckScreen from '../screens/AddDeckScreen';
 import DeckDetailScreen from '../screens/DeckDetailScreen';
 import QuizScreen from '../screens/QuizScreen';
+import AddCardScreen from '../screens/AddCardScreen';
 
 const AppNavigator = createStackNavigator (
   {
@@ -21,6 +22,9 @@ const AppNavigator = createStackNavigator (
     Quiz: {
       screen: QuizScreen,
     },
+    AddCard: {
+      screen: AddCardScreen
+    }
   },
   {
     initialRouteName: 'DeckList',

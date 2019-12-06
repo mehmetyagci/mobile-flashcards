@@ -23,7 +23,7 @@ export default class AddDeckScreen extends Component {
       return;
     }
     //console.log ('AddDeckScreen->onAddDeck->deck', this.state.deck);
-    this.props.navigation.state.params.saveItem (this.state.deck);
+    this.props.navigation.state.params.saveDeck (this.state.deck);
     this.props.navigation.goBack ();
   };
 

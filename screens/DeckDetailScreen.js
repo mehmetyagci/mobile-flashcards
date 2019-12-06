@@ -24,6 +24,29 @@ export default class DeckDetailScreen extends Component {
     });
   };
 
+  onPressAddCard = () => {
+    const {params} = this.props.navigation.state;
+    const deck = params ? params.deck : undefined;
+    const deckId = deck.title;
+    const saveCard = params.saveCard;
+    console.log ('DeckDetailScreen->onPressAddCard:deckId', deckId);
+    this.props.navigation.navigate ('AddCard', {
+      deckId: deckId,
+      saveCard: saveCard,
+    });
+  };
+
+
+  componentDidMount() 
+  {
+    console.log('DeckDetailScreen->componentDidMount')
+  }
+
+  componentWillMount(){
+    console.log('DeckDetailScreen->componentWillMount')
+
+  }
+
   render () {
     console.log ('DeckDetailScreen render');
     const {params} = this.props.navigation.state;
@@ -65,7 +88,7 @@ export default class DeckDetailScreen extends Component {
                 margin: 25,
                 justifyContent: 'center',
               }}
-              onPress={() => console.log ('button pressed')}
+              onPress={() => this.onPressAddCard ()}
             >
               <NBText style={{fontWeight: 'bold'}}>Add Card</NBText>
             </Button>
