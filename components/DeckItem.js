@@ -15,16 +15,16 @@ const {width} = Dimensions.get ('window');
 class DeckItem extends Component {
   constructor (props) {
     super (props);
-    console.log ('DeckItem->deck->constructor');
-    console.log (props);
+    //console.log ('DeckItem->deck->constructor');
+    //console.log (props);
   }
 
-  
+
   render () {
     const {title, questions} = this.props;
 
     let totalQuestionCount = deckQuestionCountMessage (questions);
-    console.log ('totalQuestionCount5:', totalQuestionCount);
+    //console.log ('totalQuestionCount5:', totalQuestionCount);
 
     return (
       <View style={styles.container}>

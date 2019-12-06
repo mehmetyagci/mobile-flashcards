@@ -39,11 +39,11 @@ export default class DeckDetailScreen extends Component {
 
   componentDidMount() 
   {
-    console.log('DeckDetailScreen->componentDidMount')
+    console.log('DeckDetailScreen->componentDidMount1')
   }
 
   componentWillMount(){
-    console.log('DeckDetailScreen->componentWillMount')
+    console.log('DeckDetailScreen->componentWillMount1')
 
   }
 
@@ -59,7 +59,7 @@ export default class DeckDetailScreen extends Component {
     }
 
     let totalQuestionCount = deckQuestionCountMessage (deck.questions);
-    console.log ('totalQuestionCount5:', totalQuestionCount);
+    //console.log ('totalQuestionCount5:', totalQuestionCount);
 
     return (
       <Container>

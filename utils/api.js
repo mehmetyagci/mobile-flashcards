@@ -15,7 +15,8 @@ export function getDecks () {
   // AsyncStorage.clear ().then (() => console.log ('Cleared'));
 
   var decks = AsyncStorage.getItem (DECK_STORAGE_KEY).then (formatDeckResults);
-  //console.log (`decks:${decks}`);
+  //console.log (`api->decks:`);
+  //console.log (decks);
   //console.groupEnd ('api->getDecks');
   return decks;
 }

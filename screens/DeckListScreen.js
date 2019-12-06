@@ -44,6 +44,8 @@ class DeckListScreen extends React.Component {
     console.group ('App->componentDidMount->Before');
     this.loadFonts ();
     this.loadDecks ();
+    console.log ('DesckListScreen->componentDidMount:');
+    console.log (this.state.decks);
     console.groupEnd ('App->componentDidMount->After');
   }
 
@@ -64,7 +66,8 @@ class DeckListScreen extends React.Component {
     try {
       // console.log ('loadDecks->before');
       getDecks ().then (x => this.setState (() => ({decks: x, isReady: true})));
-      // console.log ('loadDecks->this.state.decks:', this.state.decks);
+      console.log ('loadDecks->this.state.decks:');
+      console.log (this.state.decks);
     } catch (error) {
       console.log (error);
       alert (`Application Error. Cannot load data.Details:${error.messsage}`);
@@ -118,11 +121,26 @@ class DeckListScreen extends React.Component {
     this.setState (prevState => {
       const {decks} = prevState;
 
-      decks[deckId].questions.push (
-        Object.assign ({}, {...decks[deckId].questions, card})
-      );
+      // decks[deckId].questions.push (
+      //   Object.assign ({}, {...decks[deckId].questions, card})
+      // );
 
-      console.log ('DeckListScreen->addCard->finaldecks');
+      //  decks[deckId].questions.push (
+      //   Object.assign ( {...decks[deckId].questions, card})
+      // );
+
+      decks[deckId].questions = Object.assign ( decks[deckId].questions.concat(card));
+
+      // const newQuestions = decks[deckId].questions.concat (card);
+      // console.log ('newQuestions');
+      // console.log (newQuestions);
+
+      // decks[deckId].questions = Object.assign (newQuestions);
+
+       console.log ('decks[deckId].questions');
+       console.log (decks[deckId].questions);
+
+      console.log ('DeckListScreen->addCard->finaldecks2');
       console.log (decks);
 
       saveDecks (decks);
@@ -132,8 +150,8 @@ class DeckListScreen extends React.Component {
 
   render () {
     const {decks, isReady} = this.state;
-    //console.log ('DeckList->render->decks');
-    //console.log (decks);
+    console.log ('DeckList->render2->decks');
+    console.log (decks);
 
     const decksValues = _.values (decks);
     //console.log ('DeckList->render->decksValues:', decksValues);
