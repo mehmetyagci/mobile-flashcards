@@ -52,6 +52,13 @@ export default class QuizScreen extends React.Component {
 
     this.setState ({questionIndex: this.state.questionIndex + 1});
     // alert ('Correct selected!');
+    const questionCount = deck.questions.length;
+    if (questionIndex === questionCount) {
+      alert (
+        'Test completed and clearLocalNotification and setLocalNotification worked.'
+      );
+      clearLocalNotification ().then (setLocalNotification);
+    }
   };
 
   onIncorrect = () => {
@@ -67,7 +74,13 @@ export default class QuizScreen extends React.Component {
     }
 
     this.setState ({questionIndex: this.state.questionIndex + 1});
-    //alert ('Incorrect selected!');
+    const questionCount = deck.questions.length;
+    if (questionIndex === questionCount) {
+      alert (
+        'Test completed and clearLocalNotification and setLocalNotification worked.'
+      );
+      clearLocalNotification ().then (setLocalNotification);
+    }
   };
 
   render () {
