@@ -166,7 +166,7 @@ class DeckListScreen extends React.Component {
 
     return (
       <SafeAreaView style={styles.container}>
-        <Header />
+        <Header title={'Decks'} />
         <StatusBar barStyle="light-content" />
 
         <FlatList

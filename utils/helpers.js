@@ -7,7 +7,8 @@ import {
   MaterialCommunityIcons,
 } from '@expo/vector-icons';
 import {white, black, red, orange, blue, lightPurp, pink} from './colors';
-import {Notifications, Permissions} from 'expo';
+import {Notifications} from 'expo';
+import * as Permissions from 'expo-permissions';
 
 const NOTIFICATION_KEY = 'MobileFlashcards:notifications';
 
@@ -56,5 +57,3 @@ export function setLocalNotification () {
     }
   });
 }
-
-

@@ -9,6 +9,10 @@ export function clear () {
 export function getDecks () {
   // console.group ('api->getDecks');
 
+  // AsyncStorage.removeItem ('MobileFlashcards:notifications').then (() =>
+  //   console.log ('MobileFlashcards:notifications->RemovedItem')
+  // );
+
   // AsyncStorage.removeItem (DECK_STORAGE_KEY).then (() =>
   //   console.log ('RemovedItem')
   // );

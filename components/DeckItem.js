@@ -15,10 +15,7 @@ const {width} = Dimensions.get ('window');
 class DeckItem extends Component {
   constructor (props) {
     super (props);
-    //console.log ('DeckItem->deck->constructor');
-    //console.log (props);
   }
-
 
   render () {
     const {title, questions} = this.props;
@@ -29,10 +26,12 @@ class DeckItem extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.rowContainer}>
-          <Text style={styles.text}>
+          <Text style={styles.title}>
             {title}
           </Text>
-          <Text style={styles.text}>
+        </View>
+        <View style={styles.rowContainer}>
+          <Text style={styles.question}>
             {totalQuestionCount}
           </Text>
         </View>
@@ -49,8 +48,16 @@ const styles = StyleSheet.create ({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  text: {
-    color: '#4F50DC',
+  title: {
+    color: skyblue,
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginVertical: 20,
+    paddingLeft: 10,
+  },
+
+  question: {
+    color: gray,
     fontSize: 18,
     marginVertical: 20,
     paddingLeft: 10,

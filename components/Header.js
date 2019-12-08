@@ -2,11 +2,11 @@ import React from 'react';
 import {Header as NBHeader, Body, Title} from 'native-base';
 import {skyblue, whiteSmoke} from '../utils/colors';
 
-const Header = () => {
+const Header = ({title}) => {
   return (
     <NBHeader style={{backgroundColor: skyblue}}>
       <Body>
-        <Title style={{color: whiteSmoke}}>Header</Title>
+        <Title style={{color: whiteSmoke}}>{title}</Title>
       </Body>
     </NBHeader>
   );
