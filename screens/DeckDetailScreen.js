@@ -10,13 +10,18 @@ import {
   Button,
   Form,
   Item,
+  Header,
+  Left,
+  Right,
+  Icon,
+  Title,
 } from 'native-base';
+
 import {deckQuestionCountMessage} from '../utils/_deck';
 
 import {getDeck} from '../utils/api';
-
+import {skyblue} from '../utils/colors';
 export default class DeckDetailScreen extends Component {
-
   constructor (props) {
     super (props);
     this.state = {
@@ -102,6 +107,7 @@ export default class DeckDetailScreen extends Component {
 
     return (
       <Container>
+
         <Content
           contentContainerStyle={{
             justifyContent: 'center',
@@ -120,29 +126,30 @@ export default class DeckDetailScreen extends Component {
               </NBText>
             </CardItem>
           </Card>
-          <View style={{marginTop: 20}}>
-            <Button
-              style={{
-                backgroundColor: '#5067FF',
-                margin: 25,
-                justifyContent: 'center',
-              }}
-              onPress={() => this.onPressAddCard ()}
-            >
-              <NBText style={{fontWeight: 'bold'}}>Add Card</NBText>
-            </Button>
-          </View>
 
           <View style={{marginTop: 20}}>
             <Button
               style={{
-                backgroundColor: '#5067FF',
+                backgroundColor: skyblue,
                 margin: 25,
                 justifyContent: 'center',
               }}
               onPress={() => this.onPressQuiz ()}
             >
               <NBText style={{fontWeight: 'bold'}}>Start Quiz</NBText>
+            </Button>
+          </View>
+
+          <View style={{marginTop: 20}}>
+            <Button
+              style={{
+                backgroundColor: skyblue,
+                margin: 25,
+                justifyContent: 'center',
+              }}
+              onPress={() => this.onPressAddCard ()}
+            >
+              <NBText style={{fontWeight: 'bold'}}>Add Card</NBText>
             </Button>
           </View>
         </Content>
