@@ -64,10 +64,10 @@ export default class QuizScreen extends React.Component {
     const questionCount = deck.questions.length;
     const answer = currentQuestion.answer;
 
-    console.log ('answer1');
-    console.log (answer);
-    console.log (deck.questions);
-    console.log (deck.questions.length);
+    // console.log ('answer1');
+    // console.log (answer);
+    // console.log (deck.questions);
+    // console.log (deck.questions.length);
 
     if (answer) {
       this.setState ({correctResult: this.state.correctResult + 1});
@@ -79,9 +79,9 @@ export default class QuizScreen extends React.Component {
       `onCorrect->check decks completed->currentQuestionIndex:${currentQuestionIndex} questionCount:${questionCount}`
     );
     if (currentQuestionIndex + 1 === questionCount) {
-      alert (
-        'Test completed and clearLocalNotification and setLocalNotification worked.'
-      );
+      // alert (
+      //   'Test completed and clearLocalNotification and setLocalNotification worked.'
+      // );
       clearLocalNotification ().then (setLocalNotification);
     }
   };
@@ -90,6 +90,7 @@ export default class QuizScreen extends React.Component {
     const {deck, questionIndex} = this.state;
 
     const currentQuestion = deck.questions[questionIndex];
+    const questionCount = deck.questions.length;
     const answer = currentQuestion.answer;
     // console.log ('answer2');
     // console.log (answer);
@@ -99,14 +100,15 @@ export default class QuizScreen extends React.Component {
     }
 
     this.setState ({questionIndex: this.state.questionIndex + 1});
-    const questionCount = deck.questions.length;
+    const currentQuestionIndex = this.state.questionIndex;
+
     console.log (
-      `onIncorrect->check decks completed->questionIndex:${questionIndex} questionCount:${questionCount}`
+      `onIncorrect->check decks completed->currentQuestionIndex:${currentQuestionIndex} questionCount:${questionCount}`
     );
-    if (questionIndex === questionCount) {
-      alert (
-        'Test completed and clearLocalNotification and setLocalNotification worked.'
-      );
+    if (currentQuestionIndex + 1 === questionCount) {
+      // alert (
+      //   'Test completed and clearLocalNotification and setLocalNotification worked.'
+      // );
       clearLocalNotification ().then (setLocalNotification);
     }
   };
@@ -173,7 +175,7 @@ export default class QuizScreen extends React.Component {
     return (
       <Container>
         <Content padder>
-          <Card transparent>
+          <Card transparent style={{alignItems: 'center'}}>
             <CardItem
               header
               bordered
@@ -189,7 +191,6 @@ export default class QuizScreen extends React.Component {
             </CardItem>
 
             <CardItem>
-
               <FlipComponent
                 style={{
                   width: '100%',
@@ -258,18 +259,32 @@ export default class QuizScreen extends React.Component {
                       >
                         <NBText>Incorrect</NBText>
                       </TouchableOpacity>
-
                     </NBView>
-
                   </NBView>
                 }
                 backView={
-                  <NBView style={styles.card2}>
+                  <NBView
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      flexDirection: 'column',
+                      flex: 1,
+                    }}
+                  >
 
-                    <NBText>
-                      {currentQuestion.answer ? 'Correct' : 'Incorrect'}
-                    </NBText>
+                    <NBView
+                      style={{
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
 
+                      <NBText style={{textAlign: 'center'}}>
+                        {currentQuestion.answer ? 'Correct' : 'Incorrect'}
+                      </NBText>
+
+                    </NBView>
                   </NBView>
                 }
               />
