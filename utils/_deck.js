@@ -3,7 +3,6 @@ import {AsyncStorage} from 'react-native';
 export const DECK_STORAGE_KEY = 'MobileFlashcards:decks';
 
 function setDummyData () {
-  console.group ('_deck->setDummyData');
   const dummyData = {
     React: {
       title: 'React',
@@ -39,28 +38,20 @@ function setDummyData () {
 
   AsyncStorage.setItem (DECK_STORAGE_KEY, JSON.stringify (dummyData));
 
-  console.groupEnd ('_deck->setDummyData');
   return dummyData;
 }
 
 export function formatDeckResults (results) {
-  //console.group ('api->formatDeckResults');
-  //console.log (`results:${results}`);
   let returnValue = results === null ? setDummyData () : JSON.parse (results);
-  // console.log (`returnValue:${returnValue}`);
-  // console.log (`Object.keys(returnValue):${Object.keys (returnValue)}`);
-  // console.log (`Object.values(returnValue):${Object.values (returnValue)}`);
-  // console.groupEnd ('api->formatDeckResults');
   return returnValue;
 }
 
 export function deckQuestionCountMessage (questions) {
-  let result = '0 card';
-
   const questionsLength = questions.length;
-  if (questions.Length === 1) {
+  let result = '0 card';
+  if (questions.length === 1) {
     result = '1 card';
-  } else {
+  } else if (questions.length > 1) {
     result = questionsLength + ' cards';
   }
   return result;

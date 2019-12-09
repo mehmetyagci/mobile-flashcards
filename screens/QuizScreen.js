@@ -11,13 +11,6 @@ import {
   Button as NBButton,
   Text as NBText,
   Body,
-  Form,
-  Item,
-  Header,
-  Left,
-  Right,
-  Icon,
-  Title,
   View as NBView,
 } from 'native-base';
 
@@ -44,21 +37,10 @@ export default class QuizScreen extends React.Component {
     this.fetchData (deckId);
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return this.state.questionIndex != nextState.questionIndex;
-  // }
-
   fetchData = async deckId => {
-    //console.log ('QuizScreen->fetchData');
     const filteredDeck = await getDeck (deckId);
-    // console.log ('fetcData->filteredDeck');
-    // console.log (filteredDeck);
 
-    // console.log ('filteredDeck.questions');
-    // console.log (filteredDeck.questions);
     this.setState ({deck: filteredDeck, questionIndex: 0});
-    //   console.log ('this.state.deck.title:', this.state.deck.title);
-    //   console.log ('this.state.questionIndex:', this.state.questionIndex);
   };
 
   onCorrect = () => {
@@ -68,24 +50,14 @@ export default class QuizScreen extends React.Component {
     const questionCount = deck.questions.length;
     const answer = currentQuestion.answer;
 
-    // console.log ('answer1');
-    // console.log (answer);
-    // console.log (deck.questions);
-    // console.log (deck.questions.length);
-
     if (answer) {
       this.setState ({correctResult: this.state.correctResult + 1});
     }
 
     this.setState ({questionIndex: this.state.questionIndex + 1});
     const currentQuestionIndex = this.state.questionIndex;
-    console.log (
-      `onCorrect->check decks completed->currentQuestionIndex:${currentQuestionIndex} questionCount:${questionCount}`
-    );
+
     if (currentQuestionIndex + 1 === questionCount) {
-      // alert (
-      //   'Test completed and clearLocalNotification and setLocalNotification worked.'
-      // );
       clearLocalNotification ().then (setLocalNotification);
     }
   };
@@ -96,8 +68,6 @@ export default class QuizScreen extends React.Component {
     const currentQuestion = deck.questions[questionIndex];
     const questionCount = deck.questions.length;
     const answer = currentQuestion.answer;
-    // console.log ('answer2');
-    // console.log (answer);
 
     if (!answer) {
       this.setState ({correctResult: this.state.correctResult + 1});
@@ -106,29 +76,12 @@ export default class QuizScreen extends React.Component {
     this.setState ({questionIndex: this.state.questionIndex + 1});
     const currentQuestionIndex = this.state.questionIndex;
 
-    console.log (
-      `onIncorrect->check decks completed->currentQuestionIndex:${currentQuestionIndex} questionCount:${questionCount}`
-    );
     if (currentQuestionIndex + 1 === questionCount) {
-      // alert (
-      //   'Test completed and clearLocalNotification and setLocalNotification worked.'
-      // );
       clearLocalNotification ().then (setLocalNotification);
     }
   };
 
   onRestartQuiz = () => {
-    // const {deck} = this.state;
-    // const deckId = deck.title;
-    // console.log ('QuizScreen->onPressQuiz:deckId', deckId);
-    // this.props.navigation.navigate ('Quiz', {
-    //   deckId: deckId,
-    // });
-
-    // questionIndex: undefined,
-    // isFlipped: false,
-    // correctResult: 0,
-
     this.setState ({
       questionIndex: 0,
       isFlipped: false,
@@ -138,12 +91,6 @@ export default class QuizScreen extends React.Component {
 
   render () {
     const {deck, questionIndex} = this.state;
-
-    // console.log ('render->deck');
-    // console.log (deck);
-
-    // console.log ('render->questionIndex');
-    // console.log (questionIndex);
 
     if (questionIndex === undefined) {
       return <AppLoading />;
@@ -160,15 +107,6 @@ export default class QuizScreen extends React.Component {
     const currentQuestion = deck.questions[questionIndex];
     const questionCount = deck.questions.length;
 
-    // console.log ('currentQuestion');
-    // console.log (currentQuestion);
-
-    // console.log ('currentQuestion.answer');
-    // console.log (currentQuestion.answer);
-
-    // console.log ('questionCount');
-    // console.log (questionCount);
-
     if (questionIndex === questionCount) {
       return (
         <Container>
@@ -182,21 +120,17 @@ export default class QuizScreen extends React.Component {
               </CardItem>
               <CardItem bordered>
                 <Body>
-                  <NBText>Total Question Count:{questionCount}</NBText>
                   <NBText>
-                    Your Correct Questions Count :{this.state.correctResult}
+                    Correct Questions Count :{this.state.correctResult}
                   </NBText>
+                  <NBText>Total Question Count:{questionCount}</NBText>
                 </Body>
               </CardItem>
               <CardItem footer bordered>
 
                 <NBView style={{marginTop: 20}}>
                   <NBButton
-                    style={{
-                      backgroundColor: skyblue,
-                      margin: 10,
-                      justifyContent: 'center',
-                    }}
+                    style={styles.buttonSkyBlue}
                     onPress={() => this.onRestartQuiz ()}
                   >
                     <NBText style={{fontWeight: 'bold'}}>Restart Quiz</NBText>
@@ -205,11 +139,7 @@ export default class QuizScreen extends React.Component {
 
                 <NBView style={{marginTop: 20}}>
                   <NBButton
-                    style={{
-                      backgroundColor: skyblue,
-                      margin: 10,
-                      justifyContent: 'center',
-                    }}
+                    style={styles.buttonSkyBlue}
                     onPress={() => this.props.navigation.goBack ()}
                   >
                     <NBText style={{fontWeight: 'bold'}}>Back to Deck</NBText>
@@ -227,15 +157,7 @@ export default class QuizScreen extends React.Component {
       <Container>
         <Content padder>
           <Card transparent style={{alignItems: 'center'}}>
-            <CardItem
-              header
-              bordered
-              style={{
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
+            <CardItem header bordered style={styles.centeredCardItem}>
               <NBText note>
                 {questionIndex + 1 + ' of ' + questionCount}{' '}
               </NBText>
@@ -243,69 +165,26 @@ export default class QuizScreen extends React.Component {
 
             <CardItem>
               <FlipComponent
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flex: 1,
-                }}
+                style={styles.flipComponent}
                 isFlipped={this.state.isFlipped}
                 frontView={
-                  <NBView
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      flexDirection: 'column',
-                      flex: 1,
-                    }}
-                  >
+                  <NBView style={styles.flipView}>
 
-                    <NBView
-                      style={{
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
+                    <NBView style={styles.flipCenteredView}>
 
                       <NBText style={{textAlign: 'center'}}>
                         {currentQuestion.question}
                       </NBText>
                       <TouchableOpacity
                         onPress={this.onCorrect}
-                        style={{
-                          textAlign: 'center',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          paddingLeft: 40,
-                          paddingRight: 40,
-                          marginTop: 10,
-                          height: 40,
-                          backgroundColor: skyblue,
-                          borderColor: gray,
-                          borderWidth: 1,
-                          borderRadius: 10,
-                        }}
+                        style={styles.correctionButtons}
+                        light
                       >
                         <NBText>Correct</NBText>
                       </TouchableOpacity>
                       <TouchableOpacity
                         onPress={this.onIncorrect}
-                        style={{
-                          textAlign: 'center',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          paddingLeft: 40,
-                          paddingRight: 40,
-                          marginTop: 10,
-                          height: 40,
-                          backgroundColor: skyblue,
-                          borderColor: gray,
-                          borderWidth: 1,
-                          borderRadius: 10,
-                        }}
+                        style={styles.correctionButtons}
                         light
                       >
                         <NBText>Incorrect</NBText>
@@ -314,22 +193,9 @@ export default class QuizScreen extends React.Component {
                   </NBView>
                 }
                 backView={
-                  <NBView
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      flexDirection: 'column',
-                      flex: 1,
-                    }}
-                  >
+                  <NBView style={styles.flipView}>
 
-                    <NBView
-                      style={{
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
+                    <NBView style={styles.flipCenteredView}>
 
                       <NBText style={{textAlign: 'center'}}>
                         {currentQuestion.answer ? 'Correct' : 'Incorrect'}
@@ -383,7 +249,48 @@ const styles = StyleSheet.create ({
     backgroundColor: '#DDDDDD',
     padding: 10,
   },
-
+  buttonSkyBlue: {
+    backgroundColor: skyblue,
+    margin: 10,
+    justifyContent: 'center',
+  },
+  centeredCardItem: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  flipComponent: {
+    width: '100%',
+    height: '100%',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  flipView: {
+    width: '100%',
+    height: '100%',
+    flexDirection: 'column',
+    flex: 1,
+  },
+  flipCenteredView: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  correctionButtons: {
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 40,
+    paddingRight: 40,
+    marginTop: 10,
+    height: 40,
+    backgroundColor: skyblue,
+    borderColor: gray,
+    borderWidth: 1,
+    borderRadius: 10,
+  },
   card1: {
     backgroundColor: '#FE474C',
   },

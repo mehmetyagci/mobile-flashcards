@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Form, Item, Input, Button, Text as NBText} from 'native-base';
 
-import {whiteSmoke, purple, skyblue} from '../utils/colors';
+import {skyblue} from '../utils/colors';
 
 export default class AddDeckScreen extends Component {
   constructor (props) {
     super (props);
-    //console.log ('AddDeck->props:', props);
     this.state = {
       text: '',
     };
@@ -22,10 +21,8 @@ export default class AddDeckScreen extends Component {
       alert ('Please fill deck title');
       return;
     }
-    //console.log ('AddDeckScreen->onAddDeck->deck', this.state.deck);
     this.props.navigation.state.params.saveDeck (this.state.deck);
-    //this.props.navigation.goBack ();
-    const saveCard =  this.props.navigation.state.params.saveCard;
+    const saveCard = this.props.navigation.state.params.saveCard;
     this.props.navigation.navigate ('DeckDetail', {
       deckId: this.state.deck,
       saveCard: saveCard,
@@ -54,11 +51,7 @@ export default class AddDeckScreen extends Component {
 
           <View style={{marginTop: 20}}>
             <Button
-              style={{
-                backgroundColor: skyblue,
-                margin: 25,
-                justifyContent: 'center',
-              }}
+              style={styles.button}
               onPress={this.state.deck && this.onAddDeck}
               disabled={!this.state.deck}
             >
@@ -70,3 +63,11 @@ export default class AddDeckScreen extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create ({
+  button: {
+    backgroundColor: skyblue,
+    margin: 25,
+    justifyContent: 'center',
+  },
+});

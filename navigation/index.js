@@ -23,8 +23,8 @@ const AppNavigator = createStackNavigator (
       screen: QuizScreen,
     },
     AddCard: {
-      screen: AddCardScreen
-    }
+      screen: AddCardScreen,
+    },
   },
   {
     initialRouteName: 'DeckList',

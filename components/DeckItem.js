@@ -1,13 +1,6 @@
 import React, {Component} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
-import {Icon} from 'native-base';
-import {white, whiteSmoke, gray, skyblue} from '../utils/colors';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {gray, skyblue} from '../utils/colors';
 import {deckQuestionCountMessage} from '../utils/_deck';
 
 const {width} = Dimensions.get ('window');
@@ -21,7 +14,6 @@ class DeckItem extends Component {
     const {title, questions} = this.props;
 
     let totalQuestionCount = deckQuestionCountMessage (questions);
-    //console.log ('totalQuestionCount5:', totalQuestionCount);
 
     return (
       <View style={styles.container}>
