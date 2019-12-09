@@ -11,10 +11,10 @@ The app will allow users to create different categories of flashcards called "de
 * install all project dependencies 
 * start the development server 
 
-> `git clone https://github.com/mehmetyagci/mobile-flashcards.git`
-> `cd mobile-flashCards`
-> `npm install or yarn install`
-> `expo start or npm start or yarn start`
+>`git clone https://github.com/mehmetyagci/mobile-flashcards.git`
+>`cd mobile-flashCards`
+>`npm install or yarn install`
+>`expo start or npm start or yarn start`
 
 ## Application Functionality
 
