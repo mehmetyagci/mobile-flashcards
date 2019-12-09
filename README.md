@@ -28,7 +28,7 @@ The app will allow users to create different categories of flashcards called "de
 
 ## Quiz Screen
   - Displays the decks questions and answers
-  ![QuizScreen](https://github.com/mehmetyagci/mobile-flashcards/blob/master/screenshots/3QuizScreen.PNG)
+![QuizScreen](https://github.com/mehmetyagci/mobile-flashcards/blob/master/screenshots/3QuizScreen.PNG)
 
 # Quiz Answer
 ![QuizAnswer](https://github.com/mehmetyagci/mobile-flashcards/blob/master/screenshots/4QuizScreen.PNG)
@@ -38,8 +38,8 @@ The app will allow users to create different categories of flashcards called "de
 
 ## New Deck Screen
   - A form for creating a new deck
-  ![NewDeck](https://github.com/mehmetyagci/mobile-flashcards/blob/master/screenshots/6AddDeckScreen.PNG)
+![NewDeck](https://github.com/mehmetyagci/mobile-flashcards/blob/master/screenshots/6AddDeckScreen.PNG)
 
 ## New Card Screen
   - A form for creating a new card for a specific deck
-  ![NewCard](https://github.com/mehmetyagci/mobile-flashcards/blob/master/screenshots/7AddCardScreen.PNG)
+![NewCard](https://github.com/mehmetyagci/mobile-flashcards/blob/master/screenshots/7AddCardScreen.PNG)
