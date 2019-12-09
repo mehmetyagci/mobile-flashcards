@@ -7,6 +7,7 @@ export function clear () {
 }
 
 export function getDecks () {
+  
   AsyncStorage.removeItem ('MobileFlashcards:notifications').then (() =>
     console.log ('MobileFlashcards:notifications->RemovedItem')
   );

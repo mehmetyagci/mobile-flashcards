@@ -216,7 +216,7 @@ export default class QuizScreen extends React.Component {
               }}
               style={styles.questionAnswerButton}
             >
-              <NBText>
+              <NBText style={{color: skyblue}}>
                 {this.state.isFlipped ? 'Show Question' : 'Show Answer'}
               </NBText>
             </CardItem>
@@ -242,6 +242,7 @@ const styles = StyleSheet.create ({
     paddingRight: 40,
     marginTop: 10,
     height: 40,
+    color: skyblue,
   },
 
   button: {
