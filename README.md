@@ -5,16 +5,16 @@ Mobile Flashcards is the third and final project for the Udacity React Nanodegre
 
 The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
 
-## Installation
+## Installation & Running Application
 
 * Checkout this repository
 * install all project dependencies 
 * start the development server 
 
-> git clone https://github.com/mehmetyagci/mobile-flashcards.git
-> cd mobile-flashCards
-> npm install or yarn install
-> npm start or yarn start
+> `git clone https://github.com/mehmetyagci/mobile-flashcards.git`
+> `cd mobile-flashCards`
+> `npm install or yarn install`
+> `expo start or npm start or yarn start`
 
 ## Application Functionality
 
