@@ -30,6 +30,7 @@ The app will allow users to create different categories of flashcards called "de
 
 ## Quiz Screen
   - Displays the decks questions and answers
+  
 ![QuizScreen](https://github.com/mehmetyagci/mobile-flashcards/blob/master/screenshots/3QuizScreen.PNG)
 
 # Quiz Answer
