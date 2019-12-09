@@ -24,7 +24,13 @@ export default class AddDeckScreen extends Component {
     }
     //console.log ('AddDeckScreen->onAddDeck->deck', this.state.deck);
     this.props.navigation.state.params.saveDeck (this.state.deck);
-    this.props.navigation.goBack ();
+    //this.props.navigation.goBack ();
+    const saveCard =  this.props.navigation.state.params.saveCard;
+    this.props.navigation.navigate ('DeckDetail', {
+      deckId: this.state.deck,
+      saveCard: saveCard,
+      questionCount: 0,
+    });
   };
 
   render () {
@@ -49,14 +55,14 @@ export default class AddDeckScreen extends Component {
           <View style={{marginTop: 20}}>
             <Button
               style={{
-                backgroundColor: '#5067FF',
+                backgroundColor: skyblue,
                 margin: 25,
                 justifyContent: 'center',
               }}
               onPress={this.state.deck && this.onAddDeck}
               disabled={!this.state.deck}
             >
-              <NBText style={{fontWeight: 'bold'}}>Add Deck</NBText>
+              <NBText style={{fontWeight: 'bold'}}>Create Deck</NBText>
             </Button>
           </View>
         </View>

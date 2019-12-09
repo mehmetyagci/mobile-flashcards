@@ -77,6 +77,7 @@ class DeckListScreen extends React.Component {
   onPressFab = () => {
     this.props.navigation.navigate ('AddDeck', {
       saveDeck: this.addDeck,
+      saveCard: this.addCard,
     });
   };
 

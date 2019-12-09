@@ -44,6 +44,10 @@ export default class QuizScreen extends React.Component {
     this.fetchData (deckId);
   }
 
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return this.state.questionIndex != nextState.questionIndex;
+  // }
+
   fetchData = async deckId => {
     //console.log ('QuizScreen->fetchData');
     const filteredDeck = await getDeck (deckId);
@@ -113,6 +117,25 @@ export default class QuizScreen extends React.Component {
     }
   };
 
+  onRestartQuiz = () => {
+    // const {deck} = this.state;
+    // const deckId = deck.title;
+    // console.log ('QuizScreen->onPressQuiz:deckId', deckId);
+    // this.props.navigation.navigate ('Quiz', {
+    //   deckId: deckId,
+    // });
+
+    // questionIndex: undefined,
+    // isFlipped: false,
+    // correctResult: 0,
+
+    this.setState ({
+      questionIndex: 0,
+      isFlipped: false,
+      correctResult: 0,
+    });
+  };
+
   render () {
     const {deck, questionIndex} = this.state;
 
@@ -165,7 +188,35 @@ export default class QuizScreen extends React.Component {
                   </NBText>
                 </Body>
               </CardItem>
-              <CardItem footer bordered />
+              <CardItem footer bordered>
+
+                <NBView style={{marginTop: 20}}>
+                  <NBButton
+                    style={{
+                      backgroundColor: skyblue,
+                      margin: 10,
+                      justifyContent: 'center',
+                    }}
+                    onPress={() => this.onRestartQuiz ()}
+                  >
+                    <NBText style={{fontWeight: 'bold'}}>Restart Quiz</NBText>
+                  </NBButton>
+                </NBView>
+
+                <NBView style={{marginTop: 20}}>
+                  <NBButton
+                    style={{
+                      backgroundColor: skyblue,
+                      margin: 10,
+                      justifyContent: 'center',
+                    }}
+                    onPress={() => this.props.navigation.goBack ()}
+                  >
+                    <NBText style={{fontWeight: 'bold'}}>Back to Deck</NBText>
+                  </NBButton>
+                </NBView>
+
+              </CardItem>
             </Card>
           </Content>
         </Container>

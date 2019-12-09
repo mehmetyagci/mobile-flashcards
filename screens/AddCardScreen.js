@@ -5,11 +5,11 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Button,
 } from 'react-native';
+import {Button, Text as NBText} from 'native-base';
 import {RadioButton} from 'react-native-paper';
 
-import {whiteSmoke, purple} from '../utils/colors';
+import {whiteSmoke, purple, skyblue} from '../utils/colors';
 
 function SubmitBtn({onPress}) {
   return (
@@ -96,7 +96,7 @@ export default class AddCardScreen extends Component {
     return (
       <View style={styles.container}>
         <Text style={{color: 'skyblue', fontSize: 20, fontWeight: 'bold'}}>
-          New Question
+          New Card
         </Text>
         <View style={styles.inputContainer}>
           <TextInput
@@ -123,7 +123,18 @@ export default class AddCardScreen extends Component {
             }}
           /><Text>Incorrect</Text>
         </View>
-        <Button title="Submit" color="skyblue" onPress={this.onAddCard} />
+        <View style={{marginTop: 20}}>
+          <Button
+            style={{
+              backgroundColor: skyblue,
+              margin: 25,
+              justifyContent: 'center',
+            }}
+            onPress={this.onAddCard}
+          >
+            <NBText style={{fontWeight: 'bold'}}>Add Card</NBText>
+          </Button>
+        </View>
       </View>
     );
   }
