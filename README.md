@@ -20,10 +20,12 @@ The app will allow users to create different categories of flashcards called "de
 
 ## Deck List View(Default View)
   - The primary view, seen when the app loads, is a list of created decks which includes the name of each deck and the number of cards.
+
 ![DeckListScreen](https://github.com/mehmetyagci/mobile-flashcards/blob/master/screenshots/1DeckListScreen.PNG)
 
 ## Deck Detail Screen
   - The individual deck view
+
 ![DeckDetailScreen](https://github.com/mehmetyagci/mobile-flashcards/blob/master/screenshots/2DeckDetailScreen.PNG)
 
 ## Quiz Screen
@@ -38,8 +40,10 @@ The app will allow users to create different categories of flashcards called "de
 
 ## New Deck Screen
   - A form for creating a new deck
+
 ![NewDeck](https://github.com/mehmetyagci/mobile-flashcards/blob/master/screenshots/6AddDeckScreen.PNG)
 
 ## New Card Screen
   - A form for creating a new card for a specific deck
+  
 ![NewCard](https://github.com/mehmetyagci/mobile-flashcards/blob/master/screenshots/7AddCardScreen.PNG)
