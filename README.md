@@ -1,22 +1,27 @@
 
-# Mobile Flashcards
+## Mobile Flashcards
 
 Mobile Flashcards is the third and final project for the Udacity React Nanodegree program. It was build with using React Native a mobile application platform which allows to develop for Android and iOS using one code base.  
 
 The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
 
+## Installation
+
 
 
 ## Application Functionality
 
-### Decks List Screen
+## Deck List Screen
 
-* The primary view, seen when the app loads, is a list of created decks 
-  which includes the name of each deck and the number of cards.
-  
-* Pressing on a deck in the list the app should route to an individual deck view.
+- The primary view, seen when the app loads, is a list of created decks which includes the name of each deck and the number of cards.
+  ![DeckListScreen](https://github.com/mehmetyagci/mobile-flashcards/blob/master/screenshots/1DeckListScreen.PNG)
 
-### New Deck Screen
+### Deck Detail Screen
+
+- The individual deck view
+  ![DeckDetailScreen](https://github.com/mehmetyagci/mobile-flashcards/blob/master/screenshots/2DeckDetailScreen.PNG)
+
+## New Deck Screen
 
 * The view includes:
 
@@ -25,14 +30,7 @@ The app will allow users to create different categories of flashcards called "de
     
 * Pressing the button correctly creates the deck and routes the user to the Individual Deck view for the new deck.
 
-### Deck View Screen
 
-* The individual deck view includes:
-
-    * The deck title
-    * Number of cards in the deck
-    * Option to start a quiz for that deck
-    * Option to add a new question to the deck
 
 ### New Question  Screen
     
